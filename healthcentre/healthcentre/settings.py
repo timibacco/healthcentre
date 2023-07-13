@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'HMS',
     'rest_framework',
 ]
+REST_FRAMEWORK = {
+
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -77,9 +80,14 @@ WSGI_APPLICATION = 'healthcentre.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'healthcentre',
+        'USER': 'root',
+        'PASSWORD': 'healthcenter',
+        'HOST': 'localhost',
+        'PORT': 3306,
     }
+
 }
 
 
