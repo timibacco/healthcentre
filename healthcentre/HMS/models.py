@@ -1,7 +1,7 @@
 from django.db import models
 # Create your models here.
 
-class defualtInfo(models.Model):
+class Patient(models.Model):
     SEX_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female'),
@@ -31,11 +31,11 @@ class defualtInfo(models.Model):
     )
     first_name = models.CharField(max_length= 150)
     last_name = models.CharField(max_length= 150)
-    regNo = models.CharField(max_length= 25)
-    HRegNo = models.CharField(max_length =25)
-    sex = models.CharField(max_length= 3, choices= SEX_CHOICES, default='others')
-    Age = models.IntegerField(max_length =15)
-    mobileNo = models.IntegerField(max_length= 11)
+    regNo = models.CharField(max_length= 25,unique = True)
+    HRNo = models.CharField(max_length =25, unique = True)
+    sex = models.CharField(max_length= 6, choices= SEX_CHOICES, default='others')
+    Age = models.IntegerField()
+    mobileNo = models.CharField(max_length=20, unique = True)
     birthDate = models.DateTimeField()
     maritalStatus = models.CharField(max_length = 8, choices = MARITAL_STATUS, default= 'single')
     tribe = models.CharField(max_length = 20)
@@ -46,12 +46,12 @@ class defualtInfo(models.Model):
     department = models.CharField(max_length= 100)
     kinName = models.CharField(max_length= 150)
     kinAddress = models.CharField(max_length = 500)
-    kinMobile = models.IntegerField(max_length= 11)
+    kinMobile = models.CharField(max_length= 20)
     regStatus = models.BooleanField(default = False)
     def __str__(self):  
-        return self.first_name + " " + self.last_name  
+        return self.HRNo 
 
-class privyInfo(models.Model):
+class HealthProfile(models.Model):
     BLOOD_GROUP = (
         ('A+', 'A+'),
         ('A-', 'A-'),
@@ -70,10 +70,14 @@ class privyInfo(models.Model):
         ('SC', 'SC'),
         ('SS', 'SS'),
     )
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     bloodGroup = models.CharField(max_length = 3,choices = BLOOD_GROUP)
     genotype = models.TextField(max_length= 2, choices= GENOTYPES)
-    weight = models.DecimalField(max_length = 6)
-    height = models.DecimalField(max_length = 6)
+    weight = models.DecimalField(max_digits= 5, decimal_places= 2)
+    height = models.DecimalField(max_digits= 3, decimal_places= 2)
     allergies = models.BooleanField(default= False)
     disability = models.BooleanField(default =False)
+    
+    def __str__(self):
+        return f"Health Profile of {self.patient.HRNo}"
 
