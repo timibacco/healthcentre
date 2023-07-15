@@ -6,9 +6,8 @@ class PatientAdmin(admin.ModelAdmin):
     list_display = ('HRNo', 'first_name', 'last_name',  'regNo', 'regStatus', 'kind')
 class HealthProfileAdmin(admin.ModelAdmin):
 
-    list_display = ('Health_Registration_number', 'MatricNo','Registration_Status', 'Kind')
-    def Health_Registration_number(self, obj):
-        return obj.patient.HRNo
+    list_display = ('patient', 'MatricNo','Registration_Status', 'Kind',)
+    
     def MatricNo(self, obj):
         return obj.patient.regNo
     def Registration_Status(self, obj):
