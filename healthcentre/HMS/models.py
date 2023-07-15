@@ -17,10 +17,7 @@ class Patient(models.Model):
         ('mrs', 'Mrs'),
         ('dr', 'Dr')
     )
-    CLASS = (
-        ('undergraduate','Undergraduate'),
-        ('graduate', 'Graduate'),
-    )
+    
     KINS = (
         ('cousin', 'Cousin'),
         ('spouse', 'Spouse'),
@@ -29,6 +26,22 @@ class Patient(models.Model):
         ('brother', 'Brother'),
         ('guardian', 'Guardian')
     )
+    CLASS = [
+        ('Student',(
+        ('Undergraduate','Undergraduate'),
+        ('Graduate', 'Graduate')
+        )
+    ),
+        ('Staff', (
+        ('academic staff','Academic Staff'),
+        ( 'non-academic staff','Non-academic Staff')
+        )
+    ),
+        ('visitor', 'Visitor'),
+        ('unknown', 'Unknown')
+    
+    ]
+
     first_name = models.CharField(max_length= 150)
     last_name = models.CharField(max_length= 150)
     regNo = models.CharField(max_length= 25,unique = True)
@@ -38,6 +51,7 @@ class Patient(models.Model):
     mobileNo = models.CharField(max_length=20, unique = True)
     birthDate = models.DateTimeField()
     maritalStatus = models.CharField(max_length = 8, choices = MARITAL_STATUS, default= 'single')
+    kind = models.CharField(max_length = 19, choices = CLASS, default = 'unknown')
     tribe = models.CharField(max_length = 20)
     stateOfOrigin = models.CharField( max_length = 29)
     nationality = models.CharField(max_length= 150)
