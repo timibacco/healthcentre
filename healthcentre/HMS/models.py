@@ -1,57 +1,96 @@
 from django.db import models
+import datetime
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 # Create your models here.
 
+
+
+
+class HealthProfile(models.Model):
+    class BloodGroup(models.TextChoices):
+        A_PLUS =     'A+', 'A+'
+        A_MINUS =    'A-', 'A-'
+        B_PLUS =     'B+', 'B+'
+        B_MINUS =     'B-', 'B-'
+        O_PLUS =     'O+', 'O+'
+        O_MINUS =    'O-', 'O-'
+        AB_PLUS =    'AB+', 'AB+'
+        AB_MINUS  =    'AB-', 'AB-'
+        
+    class Genotypes(models.TextChoices):
+        AA =   'AA', 'AA'
+        AC =   'AC', 'AC'
+        AS =   'AS', 'AS'
+        CC =   'CC', 'CC'
+        SC =    'SC', 'SC'
+        SS =     'SS', 'SS'
+
+    #is_active = models.BooleanField( default = True)
+    #date = models.DateTimeField( default = datetime.datetime)
+    healthcentre_No= models.CharField(max_length= 12 , blank= True, null= True )
+    bloodGroup = models.CharField(max_length =3, choices = BloodGroup.choices,default = BloodGroup.AB_MINUS)
+    genotype = models.CharField(max_length= 2, choices= Genotypes.choices, default = Genotypes.AA )
+    weight = models.DecimalField(max_digits= 5, decimal_places= 2)
+    height = models.DecimalField(max_digits= 3, decimal_places= 2)
+    allergies = models.BooleanField(default= False)
+    disability = models.BooleanField(default =False)
+    
+    def __str__(self):
+        return f"Health Profile of {self.healthcentre_No}"
+    
+
+
+
 class Patient(models.Model):
-    SEX_CHOICES = (
-        ('M', 'Male'),
-        ('F', 'Female'),
-        ('others', 'others'),
-    )    
-    MARITAL_STATUS = (
-        ('single', 'SINGLE'),
-        ('married', 'MARRIED'),
-    )
-    TITLE_STATUS = (
-        ('mr', 'Mr'),
-        ('miss', 'Miss'),
-        ('mrs', 'Mrs'),
-        ('dr', 'Dr')
-    )
+    class SexChoices(models.TextChoices):
+        MALE =   'M', 'Male'
+        FEMALE = 'F', 'Female'
+        OTHERS = 'Others', 'others'
+            
+    class MaritalStatus(models.TextChoices):
+        SINGLE =     'S', 'SINGLE'
+        MARRIED =    'M', 'MARRIED'
+        
+    class TitleStatus(models.TextChoices):
+        MR = 'mr', 'Mr'
+        MISS = 'miss', 'Miss'
+        MRS = 'mrs', 'Mrs'
+        DR =  'dr', 'Dr'
     
-    KINS = (
-        ('cousin', 'Cousin'),
-        ('spouse', 'Spouse'),
-        ('parent','Parent'),
-        ('sister', 'Sister'),
-        ('brother', 'Brother'),
-        ('guardian', 'Guardian')
-    )
-    CLASS = [
-        ('Student',(
-        ('Undergraduate','Undergraduate'),
-        ('Graduate', 'Graduate')
-        )
-    ),
-        ('Staff', (
-        ('academic staff','Academic Staff'),
-        ( 'non-academic staff','Non-academic Staff')
-        )
-    ),
-        ('visitor', 'Visitor'),
-        ('unknown', 'Unknown')
+    class Kins(models.TextChoices):
+        COUSIN = 'cousin', 'Cousin'
+        SPOUSE =  'spouse', 'Spouse'
+        PARENT = 'parent','Parent'
+        SISTER = 'sister', 'Sister'
+        BROTHER = 'brother', 'Brother'
+        GUARDIAN = 'guardian', 'Guardian'
+        
+    class Kind(models.TextChoices):
+
+        UNDERGRADUATE = 'UG','Undergraduate'
+        GRADUATE =   'GR', 'Graduate'
+        ACADEMIC= 'AC','Academic Staff'
+        NON_ACADEMIC = 'NA','Non-academic Staff'
+        VISITOR = 'VR', 'Visitor'
+        UNKNOWN = 'Unknown', 'Unknown'
     
-    ]
 
     first_name = models.CharField(max_length= 150)
     last_name = models.CharField(max_length= 150)
-    regNo = models.CharField(max_length= 25,unique = True)
-    HRNo = models.CharField(max_length =25, unique = True)
-    sex = models.CharField(max_length= 6, choices= SEX_CHOICES, default='others')
+    matric_No = models.CharField(max_length= 25,unique = True)
+    healthcentre_No = models.CharField(max_length =25, unique = True)
+    sex = models.CharField(max_length = 6, choices= SexChoices.choices, 
+                            default=SexChoices.OTHERS)
     Age = models.IntegerField()
     mobileNo = models.CharField(max_length=20, unique = True)
+    health_profile = models.OneToOneField(HealthProfile, on_delete=models.CASCADE, blank=True, null=True,related_name= 'medical_info')
     birthDate = models.DateTimeField()
-    maritalStatus = models.CharField(max_length = 8, choices = MARITAL_STATUS, default= 'single')
-    kind = models.CharField(max_length = 19, choices = CLASS, default = 'unknown')
+    maritalStatus = models.CharField( max_length = 1, choices = MaritalStatus.choices,
+                                         default= MaritalStatus.SINGLE)
+
+    kind = models.CharField( max_length = 7, choices = Kind.choices,
+                                 default = Kind.UNKNOWN)
     tribe = models.CharField(max_length = 20)
     stateOfOrigin = models.CharField( max_length = 29)
     nationality = models.CharField(max_length= 150)
@@ -60,38 +99,15 @@ class Patient(models.Model):
     department = models.CharField(max_length= 100)
     kinName = models.CharField(max_length= 150)
     kinAddress = models.CharField(max_length = 500)
+    kin_relationship = models.CharField(max_length = 8,choices = Kins.choices, default = Kins.BROTHER)
     kinMobile = models.CharField(max_length= 20)
     regStatus = models.BooleanField(default = False)
     def __str__(self):  
-        return self.HRNo 
+        return self.first_name + self.last_name 
 
-class HealthProfile(models.Model):
-    BLOOD_GROUP = (
-        ('A+', 'A+'),
-        ('A-', 'A-'),
-        ('B+', 'B+'),
-        ('B-', 'B-'),
-        ('O+', 'O+'),
-        ('O-', 'O-'),
-        ('AB+', 'AB+'),
-        ('AB-', 'AB-')
-    )
-    GENOTYPES = (
-        ('AA', 'AA'),
-        ('AC', 'AC'),
-        ('AS', 'AS'),
-        ('CC', 'CC'),
-        ('SC', 'SC'),
-        ('SS', 'SS'),
-    )
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    bloodGroup = models.CharField(max_length = 3,choices = BLOOD_GROUP)
-    genotype = models.TextField(max_length= 2, choices= GENOTYPES)
-    weight = models.DecimalField(max_digits= 5, decimal_places= 2)
-    height = models.DecimalField(max_digits= 3, decimal_places= 2)
-    allergies = models.BooleanField(default= False)
-    disability = models.BooleanField(default =False)
-    
-    def __str__(self):
-        return f"Health Profile of {self.patient.HRNo}"
 
+@receiver(post_save, sender=Patient)
+def generate_health_profile_regNo(sender, instance, created, **kwargs):
+    if created:
+        if not instance.health_profile:
+            health_profile = HealthProfile.objects.create(medical_info=instance, healthcentre_No=instance.healthcentre_No)
