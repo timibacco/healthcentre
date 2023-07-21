@@ -6,15 +6,14 @@ class PatientAdmin(admin.ModelAdmin):
     list_display = ('healthcentre_No', 'first_name', 'last_name',  'matric_No', 'regStatus', 'kind', 'health_profile')
 class HealthProfileAdmin(admin.ModelAdmin):
 
-    list_display = ( 'Healthcentre_No','Registration_Status', 'Kind',)
+    list_display = ( 'healthcentre_No','bloodGroup', 'genotype', 'weight','Kind')
     
-    def Healthcentre_No(self, obj):
-        return obj.patient.healthcentre_No
+    
     def Registration_Status(self, obj):
-        return obj.patient.regStatus 
+        return obj.medical_info.regStatus 
     Registration_Status.boolean = True
     def Kind(self, obj):
-        return obj.patient.kind
+        return obj.medical_info.kind
     
 
 

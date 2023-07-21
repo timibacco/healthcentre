@@ -17,6 +17,7 @@ class HealthProfile(models.Model):
         O_MINUS =    'O-', 'O-'
         AB_PLUS =    'AB+', 'AB+'
         AB_MINUS  =    'AB-', 'AB-'
+        UNKNOWN = 'Unknown', 'UNKNOWN'
         
     class Genotypes(models.TextChoices):
         AA =   'AA', 'AA'
@@ -25,19 +26,21 @@ class HealthProfile(models.Model):
         CC =   'CC', 'CC'
         SC =    'SC', 'SC'
         SS =     'SS', 'SS'
+        UNKNOWN = 'Unknown', 'UNKNOWN'
 
     #is_active = models.BooleanField( default = True)
     #date = models.DateTimeField( default = datetime.datetime)
     healthcentre_No= models.CharField(max_length= 12 , blank= True, null= True )
-    bloodGroup = models.CharField(max_length =3, choices = BloodGroup.choices,default = BloodGroup.AB_MINUS)
-    genotype = models.CharField(max_length= 2, choices= Genotypes.choices, default = Genotypes.AA )
-    weight = models.DecimalField(max_digits= 5, decimal_places= 2)
-    height = models.DecimalField(max_digits= 3, decimal_places= 2)
+    bloodGroup = models.CharField(max_length =7, choices = BloodGroup.choices,default = BloodGroup.UNKNOWN)
+    genotype = models.CharField(max_length= 7, choices= Genotypes.choices, default = Genotypes.UNKNOWN )
+
+    weight = models.DecimalField(max_digits= 5, decimal_places= 2, null=True)
+    height = models.DecimalField(max_digits= 3, decimal_places= 2, null=True)
     allergies = models.BooleanField(default= False)
     disability = models.BooleanField(default =False)
     
     def __str__(self):
-        return f"Health Profile of {self.healthcentre_No}"
+        return self.healthcentre_No
     
 
 
@@ -100,14 +103,18 @@ class Patient(models.Model):
     kinName = models.CharField(max_length= 150)
     kinAddress = models.CharField(max_length = 500)
     kin_relationship = models.CharField(max_length = 8,choices = Kins.choices, default = Kins.BROTHER)
+   
     kinMobile = models.CharField(max_length= 20)
     regStatus = models.BooleanField(default = False)
     def __str__(self):  
         return self.first_name + self.last_name 
 
+   
 
 @receiver(post_save, sender=Patient)
-def generate_health_profile_regNo(sender, instance, created, **kwargs):
+def generate_health_profile_healthcentre_No(sender, instance, created, **kwargs):
     if created:
         if not instance.health_profile:
-            health_profile = HealthProfile.objects.create(medical_info=instance, healthcentre_No=instance.healthcentre_No)
+            health_profile = HealthProfile.objects.create(medical_info=instance, healthcentre_No=instance.healthcentre_No) 
+            instance.health_profile = health_profile
+            instance.save()

@@ -2,7 +2,7 @@ from rest_framework import serializers
 from HMS.models import Patient, HealthProfile
 
 
-class HealthProfileSerializer(serializers.HyperlinkedModelSerializer):
+class HealthProfileSerializer(serializers.ModelSerializer):
     
     class Meta:
        model = HealthProfile
@@ -13,28 +13,33 @@ class HealthProfileSerializer(serializers.HyperlinkedModelSerializer):
  #       model = Patient 
   #      fields = "__all__"
 
-class RClerkPatientSerializer(serializers.ModelSerializer):
+class PatientRecordClerkSerializer(serializers.ModelSerializer):
   
-    health_profile= serializers.CharField(source='medical_info.healthcentre_No')#  related_model = HealthProfileSerializer( )
+    
     class Meta:
         model = Patient
-        fields = '__all__'
+        fields = ['first_name','last_name','matric_No','healthcentre_No','sex','Age','kind','kinName','kinAddress','kin_relationship','kinMobile','regStatus']
 
-class FullPatientSerializer(serializers.ModelSerializer):
-    health_profile= serializers.CharField(source='medInfo.id')
+class PatientMedClerkSerializer(serializers.ModelSerializer):
+    health_profile= HealthProfileSerializer()
     class Meta:
         model = Patient
         fields = '__all__'
     
+    def get_field_names(self, declared_fields, info):
+        fields = super().get_field_names(declared_fields, info)
+        fields.remove('health_profile')
+        fields.append('health_profile')
+        return fields
     #
     #
 
-class UpdatePatientSerializer(serializers.ModelSerializer):
+class PatientLabAttendantSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Patient
         fields = '__all__'
-        exclude = 'medInfo'
+        
 
 class UpdateHealthProfileSerializer(serializers.ModelSerializer):
     
