@@ -30,7 +30,7 @@ SECRET_KEY='#g+y=i0mb-hq7)iz&7qg3ftdgq%p2g%wa$-^0$6=^17^v5(#6u'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 SITE_ID = 1
@@ -44,8 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     'drf_yasg',
-
+    'rest_framework_simplejwt',
     'rest_framework',
     'HMS.apps.HmsConfig',
     
@@ -60,13 +61,13 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.MultiPartParser',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
 
     ],
     'DEFAULT_AUTHENTICATION_CLASSES':[
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
+     #   'rest_framework.authentication.BasicAuthentication',
     ]
 }
 
@@ -180,7 +181,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 #SECURE_SSL_REDIRECT = True
-#SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -196,6 +197,7 @@ USE_TZ = True
 
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
 
 # Static files (CSS, JavaScript, Images)
@@ -204,6 +206,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Default primary key field type

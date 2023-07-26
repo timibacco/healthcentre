@@ -85,6 +85,8 @@ class Patient(models.Model):
     healthcentre_No = models.CharField(max_length =25, unique = True)
     sex = models.CharField(max_length = 6, choices= SexChoices.choices, 
                             default=SexChoices.OTHERS)
+    profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
+
     Age = models.IntegerField()
     mobileNo = models.CharField(max_length=20, unique = True)
     health_profile = models.OneToOneField(HealthProfile, on_delete=models.CASCADE, blank=True, null=True,related_name= 'medical_info')

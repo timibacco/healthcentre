@@ -18,7 +18,7 @@ class PatientRecordClerkSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Patient
-        fields = ['first_name','last_name','matric_No','healthcentre_No','sex','Age','kind','kinName','kinAddress','kin_relationship','kinMobile','regStatus']
+        fields = ['profile_picture','first_name','last_name','matric_No','healthcentre_No','sex','Age','kind','kinName','kinAddress','kin_relationship','kinMobile','regStatus']
 
 class PatientMedClerkSerializer(serializers.ModelSerializer):
     health_profile= HealthProfileSerializer()
@@ -34,7 +34,7 @@ class PatientMedClerkSerializer(serializers.ModelSerializer):
     #
     #
 
-class PatientLabAttendantSerializer(serializers.ModelSerializer):
+class PatientLaboratoristSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Patient
