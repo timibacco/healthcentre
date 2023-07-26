@@ -1,0 +1,795 @@
+{
+	"info": {
+		"_postman_id": "28e69c26-6141-4ff3-9d03-3fd0f87057b4",
+		"name": "HEALTHCENTRE API",
+		"description": "Test description\n\nContact Support:\n Email: contact@snippets.local",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "28761175-28e69c26-6141-4ff3-9d03-3fd0f87057b4"
+	},
+	"item": [
+		{
+			"name": "lab-attendant",
+			"item": [
+				{
+					"name": "patients",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "lab-attendant patients read",
+									"id": "707f2e88-48a3-43c8-bcb4-efb621c8f793",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/lab-attendant/patients/:id/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"lab-attendant",
+												"patients",
+												":id",
+												""
+											],
+											"variable": [
+												{
+													"id": "e47a01c9-2b52-4758-a718-63c6bf57150a",
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										},
+										"description": "Lists or Updates all patients_medical_infos [ Lab Attendant only] .Active and Inactive Patients\nFor more details on how accounts are activated please see [ Author ]"
+									},
+									"response": [
+										{
+											"id": "b3a95726-8139-4150-9ec0-a8c1461ca863",
+											"name": "Untitled Example",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/lab-attendant/patients/:id/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"lab-attendant",
+														"patients",
+														":id",
+														""
+													],
+													"variable": [
+														{
+															"id": "e47a01c9-2b52-4758-a718-63c6bf57150a",
+															"key": "id",
+															"value": "<integer>"
+														}
+													]
+												},
+												"description": "Lists or Updates all patients_medical_infos [ Lab Attendant only] .Active and Inactive Patients\nFor more details on how accounts are activated please see [ Author ]"
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"matric_No\": \"<string>\",\n  \"healthcentre_No\": \"<string>\",\n  \"Age\": \"<integer>\",\n  \"mobileNo\": \"<string>\",\n  \"birthDate\": \"<dateTime>\",\n  \"tribe\": \"<string>\",\n  \"stateOfOrigin\": \"<string>\",\n  \"nationality\": \"<string>\",\n  \"religion\": \"<string>\",\n  \"faculty\": \"<string>\",\n  \"department\": \"<string>\",\n  \"kinName\": \"<string>\",\n  \"kinAddress\": \"<string>\",\n  \"kinMobile\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"sex\": \"Others\",\n  \"profile_picture\": \"<uri>\",\n  \"maritalStatus\": \"S\",\n  \"kind\": \"NA\",\n  \"kin_relationship\": \"guardian\",\n  \"regStatus\": \"<boolean>\",\n  \"health_profile\": \"<integer>\"\n}"
+										}
+									]
+								},
+								{
+									"name": "lab-attendant patients update",
+									"id": "f35666f3-f098-4d5b-859d-7baa58a7fd38",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"matric_No\": \"<string>\",\n  \"healthcentre_No\": \"<string>\",\n  \"Age\": \"<integer>\",\n  \"mobileNo\": \"<string>\",\n  \"birthDate\": \"<dateTime>\",\n  \"tribe\": \"<string>\",\n  \"stateOfOrigin\": \"<string>\",\n  \"nationality\": \"<string>\",\n  \"religion\": \"<string>\",\n  \"faculty\": \"<string>\",\n  \"department\": \"<string>\",\n  \"kinName\": \"<string>\",\n  \"kinAddress\": \"<string>\",\n  \"kinMobile\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"sex\": \"Others\",\n  \"profile_picture\": \"<uri>\",\n  \"maritalStatus\": \"S\",\n  \"kind\": \"NA\",\n  \"kin_relationship\": \"guardian\",\n  \"regStatus\": \"<boolean>\",\n  \"health_profile\": \"<integer>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/lab-attendant/patients/:id/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"lab-attendant",
+												"patients",
+												":id",
+												""
+											],
+											"variable": [
+												{
+													"id": "02bd60b4-708c-469f-819f-04267916eeac",
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										},
+										"description": "Lists or Updates all patients_medical_infos [ Lab Attendant only] .Active and Inactive Patients\nFor more details on how accounts are activated please see [ Author ]"
+									},
+									"response": [
+										{
+											"id": "5d8a38d8-e3e6-41e6-9620-2dad7984abd7",
+											"name": "Untitled Example",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"matric_No\": \"<string>\",\n  \"healthcentre_No\": \"<string>\",\n  \"Age\": \"<integer>\",\n  \"mobileNo\": \"<string>\",\n  \"birthDate\": \"<dateTime>\",\n  \"tribe\": \"<string>\",\n  \"stateOfOrigin\": \"<string>\",\n  \"nationality\": \"<string>\",\n  \"religion\": \"<string>\",\n  \"faculty\": \"<string>\",\n  \"department\": \"<string>\",\n  \"kinName\": \"<string>\",\n  \"kinAddress\": \"<string>\",\n  \"kinMobile\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"sex\": \"Others\",\n  \"profile_picture\": \"<uri>\",\n  \"maritalStatus\": \"S\",\n  \"kind\": \"NA\",\n  \"kin_relationship\": \"guardian\",\n  \"regStatus\": \"<boolean>\",\n  \"health_profile\": \"<integer>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/lab-attendant/patients/:id/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"lab-attendant",
+														"patients",
+														":id",
+														""
+													],
+													"variable": [
+														{
+															"id": "02bd60b4-708c-469f-819f-04267916eeac",
+															"key": "id",
+															"value": "<integer>"
+														}
+													]
+												},
+												"description": "Lists or Updates all patients_medical_infos [ Lab Attendant only] .Active and Inactive Patients\nFor more details on how accounts are activated please see [ Author ]"
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"matric_No\": \"<string>\",\n  \"healthcentre_No\": \"<string>\",\n  \"Age\": \"<integer>\",\n  \"mobileNo\": \"<string>\",\n  \"birthDate\": \"<dateTime>\",\n  \"tribe\": \"<string>\",\n  \"stateOfOrigin\": \"<string>\",\n  \"nationality\": \"<string>\",\n  \"religion\": \"<string>\",\n  \"faculty\": \"<string>\",\n  \"department\": \"<string>\",\n  \"kinName\": \"<string>\",\n  \"kinAddress\": \"<string>\",\n  \"kinMobile\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"sex\": \"Others\",\n  \"profile_picture\": \"<uri>\",\n  \"maritalStatus\": \"S\",\n  \"kind\": \"NA\",\n  \"kin_relationship\": \"guardian\",\n  \"regStatus\": \"<boolean>\",\n  \"health_profile\": \"<integer>\"\n}"
+										}
+									]
+								},
+								{
+									"name": "lab-attendant patients partial update",
+									"id": "fefa00c0-febe-49a7-9c63-ded9eeac4371",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"matric_No\": \"<string>\",\n  \"healthcentre_No\": \"<string>\",\n  \"Age\": \"<integer>\",\n  \"mobileNo\": \"<string>\",\n  \"birthDate\": \"<dateTime>\",\n  \"tribe\": \"<string>\",\n  \"stateOfOrigin\": \"<string>\",\n  \"nationality\": \"<string>\",\n  \"religion\": \"<string>\",\n  \"faculty\": \"<string>\",\n  \"department\": \"<string>\",\n  \"kinName\": \"<string>\",\n  \"kinAddress\": \"<string>\",\n  \"kinMobile\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"sex\": \"Others\",\n  \"profile_picture\": \"<uri>\",\n  \"maritalStatus\": \"S\",\n  \"kind\": \"NA\",\n  \"kin_relationship\": \"guardian\",\n  \"regStatus\": \"<boolean>\",\n  \"health_profile\": \"<integer>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/lab-attendant/patients/:id/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"lab-attendant",
+												"patients",
+												":id",
+												""
+											],
+											"variable": [
+												{
+													"id": "4975bda9-fc0b-442e-b378-6de8841dbd78",
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										},
+										"description": "Lists or Updates all patients_medical_infos [ Lab Attendant only] .Active and Inactive Patients\nFor more details on how accounts are activated please see [ Author ]"
+									},
+									"response": [
+										{
+											"id": "08171919-54f1-4a23-a20d-f388b6a6745e",
+											"name": "Untitled Example",
+											"originalRequest": {
+												"method": "PATCH",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"matric_No\": \"<string>\",\n  \"healthcentre_No\": \"<string>\",\n  \"Age\": \"<integer>\",\n  \"mobileNo\": \"<string>\",\n  \"birthDate\": \"<dateTime>\",\n  \"tribe\": \"<string>\",\n  \"stateOfOrigin\": \"<string>\",\n  \"nationality\": \"<string>\",\n  \"religion\": \"<string>\",\n  \"faculty\": \"<string>\",\n  \"department\": \"<string>\",\n  \"kinName\": \"<string>\",\n  \"kinAddress\": \"<string>\",\n  \"kinMobile\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"sex\": \"Others\",\n  \"profile_picture\": \"<uri>\",\n  \"maritalStatus\": \"S\",\n  \"kind\": \"NA\",\n  \"kin_relationship\": \"guardian\",\n  \"regStatus\": \"<boolean>\",\n  \"health_profile\": \"<integer>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/lab-attendant/patients/:id/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"lab-attendant",
+														"patients",
+														":id",
+														""
+													],
+													"variable": [
+														{
+															"id": "4975bda9-fc0b-442e-b378-6de8841dbd78",
+															"key": "id",
+															"value": "<integer>"
+														}
+													]
+												},
+												"description": "Lists or Updates all patients_medical_infos [ Lab Attendant only] .Active and Inactive Patients\nFor more details on how accounts are activated please see [ Author ]"
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"matric_No\": \"<string>\",\n  \"healthcentre_No\": \"<string>\",\n  \"Age\": \"<integer>\",\n  \"mobileNo\": \"<string>\",\n  \"birthDate\": \"<dateTime>\",\n  \"tribe\": \"<string>\",\n  \"stateOfOrigin\": \"<string>\",\n  \"nationality\": \"<string>\",\n  \"religion\": \"<string>\",\n  \"faculty\": \"<string>\",\n  \"department\": \"<string>\",\n  \"kinName\": \"<string>\",\n  \"kinAddress\": \"<string>\",\n  \"kinMobile\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"sex\": \"Others\",\n  \"profile_picture\": \"<uri>\",\n  \"maritalStatus\": \"S\",\n  \"kind\": \"NA\",\n  \"kin_relationship\": \"guardian\",\n  \"regStatus\": \"<boolean>\",\n  \"health_profile\": \"<integer>\"\n}"
+										}
+									]
+								}
+							],
+							"id": "41aab1c6-9ce0-4510-87ec-de662acfc63a"
+						}
+					],
+					"id": "f9c5f75e-048f-401f-a74f-e40fb422a2bf"
+				}
+			],
+			"id": "5b1f97ef-f8a8-4399-98a1-3b4f7c481708"
+		},
+		{
+			"name": "med-clerk",
+			"item": [
+				{
+					"name": "patients",
+					"item": [
+						{
+							"name": "med-clerk patients list",
+							"id": "e5e39095-b317-4c2f-aaa1-3c78ba64f5bf",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/med-clerk/patients/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"med-clerk",
+										"patients",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "a1ebc84c-297e-42c8-8355-9de751a8895d",
+									"name": "Untitled Example",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/med-clerk/patients/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"med-clerk",
+												"patients",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"matric_No\": \"<string>\",\n    \"healthcentre_No\": \"<string>\",\n    \"Age\": \"<integer>\",\n    \"mobileNo\": \"<string>\",\n    \"birthDate\": \"<dateTime>\",\n    \"tribe\": \"<string>\",\n    \"stateOfOrigin\": \"<string>\",\n    \"nationality\": \"<string>\",\n    \"religion\": \"<string>\",\n    \"faculty\": \"<string>\",\n    \"department\": \"<string>\",\n    \"kinName\": \"<string>\",\n    \"kinAddress\": \"<string>\",\n    \"kinMobile\": \"<string>\",\n    \"health_profile\": {\n      \"id\": \"<integer>\",\n      \"healthcentre_No\": \"<string>\",\n      \"bloodGroup\": \"Unknown\",\n      \"genotype\": \"AS\",\n      \"weight\": \"<string>\",\n      \"height\": \"<string>\",\n      \"allergies\": \"<boolean>\",\n      \"disability\": \"<boolean>\"\n    },\n    \"id\": \"<integer>\",\n    \"sex\": \"F\",\n    \"profile_picture\": \"<uri>\",\n    \"maritalStatus\": \"S\",\n    \"kind\": \"AC\",\n    \"kin_relationship\": \"spouse\",\n    \"regStatus\": \"<boolean>\"\n  },\n  {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"matric_No\": \"<string>\",\n    \"healthcentre_No\": \"<string>\",\n    \"Age\": \"<integer>\",\n    \"mobileNo\": \"<string>\",\n    \"birthDate\": \"<dateTime>\",\n    \"tribe\": \"<string>\",\n    \"stateOfOrigin\": \"<string>\",\n    \"nationality\": \"<string>\",\n    \"religion\": \"<string>\",\n    \"faculty\": \"<string>\",\n    \"department\": \"<string>\",\n    \"kinName\": \"<string>\",\n    \"kinAddress\": \"<string>\",\n    \"kinMobile\": \"<string>\",\n    \"health_profile\": {\n      \"id\": \"<integer>\",\n      \"healthcentre_No\": \"<string>\",\n      \"bloodGroup\": \"AB-\",\n      \"genotype\": \"Unknown\",\n      \"weight\": \"<string>\",\n      \"height\": \"<string>\",\n      \"allergies\": \"<boolean>\",\n      \"disability\": \"<boolean>\"\n    },\n    \"id\": \"<integer>\",\n    \"sex\": \"M\",\n    \"profile_picture\": \"<uri>\",\n    \"maritalStatus\": \"M\",\n    \"kind\": \"AC\",\n    \"kin_relationship\": \"guardian\",\n    \"regStatus\": \"<boolean>\"\n  }\n]"
+								}
+							]
+						},
+						{
+							"name": "med-clerk patients create",
+							"id": "8896a06b-eba4-4bdb-b8fb-eb219c9ddbf0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"matric_No\": \"<string>\",\n  \"healthcentre_No\": \"<string>\",\n  \"Age\": \"<integer>\",\n  \"mobileNo\": \"<string>\",\n  \"birthDate\": \"<dateTime>\",\n  \"tribe\": \"<string>\",\n  \"stateOfOrigin\": \"<string>\",\n  \"nationality\": \"<string>\",\n  \"religion\": \"<string>\",\n  \"faculty\": \"<string>\",\n  \"department\": \"<string>\",\n  \"kinName\": \"<string>\",\n  \"kinAddress\": \"<string>\",\n  \"kinMobile\": \"<string>\",\n  \"health_profile\": {\n    \"id\": \"<integer>\",\n    \"healthcentre_No\": \"<string>\",\n    \"bloodGroup\": \"AB-\",\n    \"genotype\": \"SC\",\n    \"weight\": \"<string>\",\n    \"height\": \"<string>\",\n    \"allergies\": \"<boolean>\",\n    \"disability\": \"<boolean>\"\n  },\n  \"id\": \"<integer>\",\n  \"sex\": \"Others\",\n  \"profile_picture\": \"<uri>\",\n  \"maritalStatus\": \"S\",\n  \"kind\": \"AC\",\n  \"kin_relationship\": \"cousin\",\n  \"regStatus\": \"<boolean>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/med-clerk/patients/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"med-clerk",
+										"patients",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "f07491fd-55d4-41dc-afc4-2eaf4c3e2ebb",
+									"name": "Untitled Example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"matric_No\": \"<string>\",\n  \"healthcentre_No\": \"<string>\",\n  \"Age\": \"<integer>\",\n  \"mobileNo\": \"<string>\",\n  \"birthDate\": \"<dateTime>\",\n  \"tribe\": \"<string>\",\n  \"stateOfOrigin\": \"<string>\",\n  \"nationality\": \"<string>\",\n  \"religion\": \"<string>\",\n  \"faculty\": \"<string>\",\n  \"department\": \"<string>\",\n  \"kinName\": \"<string>\",\n  \"kinAddress\": \"<string>\",\n  \"kinMobile\": \"<string>\",\n  \"health_profile\": {\n    \"id\": \"<integer>\",\n    \"healthcentre_No\": \"<string>\",\n    \"bloodGroup\": \"AB-\",\n    \"genotype\": \"SC\",\n    \"weight\": \"<string>\",\n    \"height\": \"<string>\",\n    \"allergies\": \"<boolean>\",\n    \"disability\": \"<boolean>\"\n  },\n  \"id\": \"<integer>\",\n  \"sex\": \"Others\",\n  \"profile_picture\": \"<uri>\",\n  \"maritalStatus\": \"S\",\n  \"kind\": \"AC\",\n  \"kin_relationship\": \"cousin\",\n  \"regStatus\": \"<boolean>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/med-clerk/patients/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"med-clerk",
+												"patients",
+												""
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"matric_No\": \"<string>\",\n  \"healthcentre_No\": \"<string>\",\n  \"Age\": \"<integer>\",\n  \"mobileNo\": \"<string>\",\n  \"birthDate\": \"<dateTime>\",\n  \"tribe\": \"<string>\",\n  \"stateOfOrigin\": \"<string>\",\n  \"nationality\": \"<string>\",\n  \"religion\": \"<string>\",\n  \"faculty\": \"<string>\",\n  \"department\": \"<string>\",\n  \"kinName\": \"<string>\",\n  \"kinAddress\": \"<string>\",\n  \"kinMobile\": \"<string>\",\n  \"health_profile\": {\n    \"id\": \"<integer>\",\n    \"healthcentre_No\": \"<string>\",\n    \"bloodGroup\": \"AB-\",\n    \"genotype\": \"SC\",\n    \"weight\": \"<string>\",\n    \"height\": \"<string>\",\n    \"allergies\": \"<boolean>\",\n    \"disability\": \"<boolean>\"\n  },\n  \"id\": \"<integer>\",\n  \"sex\": \"Others\",\n  \"profile_picture\": \"<uri>\",\n  \"maritalStatus\": \"S\",\n  \"kind\": \"AC\",\n  \"kin_relationship\": \"cousin\",\n  \"regStatus\": \"<boolean>\"\n}"
+								}
+							]
+						}
+					],
+					"id": "af63a076-7085-48c8-a0a7-85d3730a54d0"
+				}
+			],
+			"id": "221b464c-7074-432f-80e3-11b6ec2d56e4"
+		},
+		{
+			"name": "record-clerk",
+			"item": [
+				{
+					"name": "patients",
+					"item": [
+						{
+							"name": "record-clerk patients list",
+							"id": "8ce1e55c-6f09-4dbf-b812-8ec34ca8af5f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/record-clerk/patients/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"record-clerk",
+										"patients",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "d1c0e184-c943-453b-9c58-58dbcfeb1b67",
+									"name": "Untitled Example",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/record-clerk/patients/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"record-clerk",
+												"patients",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"matric_No\": \"<string>\",\n    \"healthcentre_No\": \"<string>\",\n    \"Age\": \"<integer>\",\n    \"kinName\": \"<string>\",\n    \"kinAddress\": \"<string>\",\n    \"kinMobile\": \"<string>\",\n    \"profile_picture\": \"<uri>\",\n    \"sex\": \"M\",\n    \"kind\": \"UG\",\n    \"kin_relationship\": \"brother\",\n    \"regStatus\": \"<boolean>\"\n  },\n  {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"matric_No\": \"<string>\",\n    \"healthcentre_No\": \"<string>\",\n    \"Age\": \"<integer>\",\n    \"kinName\": \"<string>\",\n    \"kinAddress\": \"<string>\",\n    \"kinMobile\": \"<string>\",\n    \"profile_picture\": \"<uri>\",\n    \"sex\": \"M\",\n    \"kind\": \"AC\",\n    \"kin_relationship\": \"cousin\",\n    \"regStatus\": \"<boolean>\"\n  }\n]"
+								}
+							]
+						}
+					],
+					"id": "03aad16b-6fa7-4e1a-9bcc-3a49d3f94f65"
+				}
+			],
+			"id": "3ea925cd-678d-4a10-8f09-bd5711871f99"
+		},
+		{
+			"name": "token",
+			"item": [
+				{
+					"name": "refresh",
+					"item": [
+						{
+							"name": "token refresh create",
+							"id": "eae0fc27-1f7f-45e7-8464-18c0a4e82e97",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"refresh\": \"<string>\",\n  \"access\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/token/refresh/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"token",
+										"refresh",
+										""
+									]
+								},
+								"description": "Takes a refresh type JSON web token and returns an access type JSON web\ntoken if the refresh token is valid."
+							},
+							"response": [
+								{
+									"id": "1c4c784d-1d4e-4b77-ae1a-64779e8f1e9d",
+									"name": "Untitled Example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"refresh\": \"<string>\",\n  \"access\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/token/refresh/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"token",
+												"refresh",
+												""
+											]
+										},
+										"description": "Takes a refresh type JSON web token and returns an access type JSON web\ntoken if the refresh token is valid."
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"refresh\": \"<string>\",\n  \"access\": \"<string>\"\n}"
+								}
+							]
+						}
+					],
+					"id": "850d7ccb-d964-4283-84fa-e3aceea787ff"
+				},
+				{
+					"name": "token create",
+					"id": "23679193-f6df-4d64-a93c-a72492ff8625",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/token/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"token",
+								""
+							]
+						},
+						"description": "Takes a set of user credentials and returns an access and refresh JSON web\ntoken pair to prove the authentication of those credentials."
+					},
+					"response": [
+						{
+							"id": "c1129ec0-f19a-4cb0-9f50-a9a0936aef24",
+							"name": "Untitled Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/token/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"token",
+										""
+									]
+								},
+								"description": "Takes a set of user credentials and returns an access and refresh JSON web\ntoken pair to prove the authentication of those credentials."
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}"
+						}
+					]
+				}
+			],
+			"id": "fd0463e8-78a7-4254-a312-4227104d1f50"
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "{{basicAuthUsername}}",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "{{basicAuthPassword}}",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"id": "c66ec3b0-58f3-410a-917a-598b095cf90d",
+			"key": "baseUrl",
+			"value": "http://vultus.serveo.net/api"
+		}
+	]
+}

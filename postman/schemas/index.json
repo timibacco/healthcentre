@@ -1,0 +1,810 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "HEALTHCENTRE API",
+    "description": "Test description",
+    "termsOfService": "https://www.google.com/policies/terms/",
+    "contact": {
+      "email": "contact@snippets.local"
+    },
+    "license": {
+      "name": "BSD License"
+    },
+    "version": "v1"
+  },
+  "host": "vultus.serveo.net",
+  "schemes": [
+    "http"
+  ],
+  "basePath": "/api",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "Basic": {
+      "type": "basic"
+    }
+  },
+  "security": [
+    {
+      "Basic": []
+    }
+  ],
+  "paths": {
+    "/lab-attendant/patients/{id}/": {
+      "get": {
+        "operationId": "lab-attendant_patients_read",
+        "description": "Lists or Updates all patients_medical_infos [ Lab Attendant only] .Active and Inactive Patients\nFor more details on how accounts are activated please see [ Author ]",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/PatientLabAttendant"
+            }
+          }
+        },
+        "tags": [
+          "lab-attendant"
+        ]
+      },
+      "put": {
+        "operationId": "lab-attendant_patients_update",
+        "description": "Lists or Updates all patients_medical_infos [ Lab Attendant only] .Active and Inactive Patients\nFor more details on how accounts are activated please see [ Author ]",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PatientLabAttendant"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/PatientLabAttendant"
+            }
+          }
+        },
+        "tags": [
+          "lab-attendant"
+        ]
+      },
+      "patch": {
+        "operationId": "lab-attendant_patients_partial_update",
+        "description": "Lists or Updates all patients_medical_infos [ Lab Attendant only] .Active and Inactive Patients\nFor more details on how accounts are activated please see [ Author ]",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PatientLabAttendant"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/PatientLabAttendant"
+            }
+          }
+        },
+        "tags": [
+          "lab-attendant"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this patient.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/med-clerk/patients/": {
+      "get": {
+        "operationId": "med-clerk_patients_list",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PatientMedClerk"
+              }
+            }
+          }
+        },
+        "tags": [
+          "med-clerk"
+        ]
+      },
+      "post": {
+        "operationId": "med-clerk_patients_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PatientMedClerk"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/PatientMedClerk"
+            }
+          }
+        },
+        "tags": [
+          "med-clerk"
+        ]
+      },
+      "parameters": []
+    },
+    "/record-clerk/patients/": {
+      "get": {
+        "operationId": "record-clerk_patients_list",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PatientRecordClerk"
+              }
+            }
+          }
+        },
+        "tags": [
+          "record-clerk"
+        ]
+      },
+      "parameters": []
+    },
+    "/token/": {
+      "post": {
+        "operationId": "token_create",
+        "description": "Takes a set of user credentials and returns an access and refresh JSON web\ntoken pair to prove the authentication of those credentials.",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TokenObtainPair"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/TokenObtainPair"
+            }
+          }
+        },
+        "tags": [
+          "token"
+        ]
+      },
+      "parameters": []
+    },
+    "/token/refresh/": {
+      "post": {
+        "operationId": "token_refresh_create",
+        "description": "Takes a refresh type JSON web token and returns an access type JSON web\ntoken if the refresh token is valid.",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TokenRefresh"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/TokenRefresh"
+            }
+          }
+        },
+        "tags": [
+          "token"
+        ]
+      },
+      "parameters": []
+    }
+  },
+  "definitions": {
+    "PatientLabAttendant": {
+      "required": [
+        "first_name",
+        "last_name",
+        "matric_No",
+        "healthcentre_No",
+        "Age",
+        "mobileNo",
+        "birthDate",
+        "tribe",
+        "stateOfOrigin",
+        "nationality",
+        "religion",
+        "faculty",
+        "department",
+        "kinName",
+        "kinAddress",
+        "kinMobile"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "first_name": {
+          "title": "First name",
+          "type": "string",
+          "maxLength": 150,
+          "minLength": 1
+        },
+        "last_name": {
+          "title": "Last name",
+          "type": "string",
+          "maxLength": 150,
+          "minLength": 1
+        },
+        "matric_No": {
+          "title": "Matric No",
+          "type": "string",
+          "maxLength": 25,
+          "minLength": 1
+        },
+        "healthcentre_No": {
+          "title": "Healthcentre No",
+          "type": "string",
+          "maxLength": 25,
+          "minLength": 1
+        },
+        "sex": {
+          "title": "Sex",
+          "type": "string",
+          "enum": [
+            "M",
+            "F",
+            "Others"
+          ]
+        },
+        "profile_picture": {
+          "title": "Profile picture",
+          "type": "string",
+          "readOnly": true,
+          "x-nullable": true,
+          "format": "uri"
+        },
+        "Age": {
+          "title": "Age",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        },
+        "mobileNo": {
+          "title": "MobileNo",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "birthDate": {
+          "title": "BirthDate",
+          "type": "string",
+          "format": "date-time"
+        },
+        "maritalStatus": {
+          "title": "MaritalStatus",
+          "type": "string",
+          "enum": [
+            "S",
+            "M"
+          ]
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string",
+          "enum": [
+            "UG",
+            "GR",
+            "AC",
+            "NA",
+            "VR",
+            "Unknown"
+          ]
+        },
+        "tribe": {
+          "title": "Tribe",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "stateOfOrigin": {
+          "title": "StateOfOrigin",
+          "type": "string",
+          "maxLength": 29,
+          "minLength": 1
+        },
+        "nationality": {
+          "title": "Nationality",
+          "type": "string",
+          "maxLength": 150,
+          "minLength": 1
+        },
+        "religion": {
+          "title": "Religion",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "faculty": {
+          "title": "Faculty",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "department": {
+          "title": "Department",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "kinName": {
+          "title": "KinName",
+          "type": "string",
+          "maxLength": 150,
+          "minLength": 1
+        },
+        "kinAddress": {
+          "title": "KinAddress",
+          "type": "string",
+          "maxLength": 500,
+          "minLength": 1
+        },
+        "kin_relationship": {
+          "title": "Kin relationship",
+          "type": "string",
+          "enum": [
+            "cousin",
+            "spouse",
+            "parent",
+            "sister",
+            "brother",
+            "guardian"
+          ]
+        },
+        "kinMobile": {
+          "title": "KinMobile",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "regStatus": {
+          "title": "RegStatus",
+          "type": "boolean"
+        },
+        "health_profile": {
+          "title": "Health profile",
+          "type": "integer",
+          "x-nullable": true
+        }
+      }
+    },
+    "HealthProfile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "healthcentre_No": {
+          "title": "Healthcentre No",
+          "type": "string",
+          "maxLength": 12,
+          "x-nullable": true
+        },
+        "bloodGroup": {
+          "title": "BloodGroup",
+          "type": "string",
+          "enum": [
+            "A+",
+            "A-",
+            "B+",
+            "B-",
+            "O+",
+            "O-",
+            "AB+",
+            "AB-",
+            "Unknown"
+          ]
+        },
+        "genotype": {
+          "title": "Genotype",
+          "type": "string",
+          "enum": [
+            "AA",
+            "AC",
+            "AS",
+            "CC",
+            "SC",
+            "SS",
+            "Unknown"
+          ]
+        },
+        "weight": {
+          "title": "Weight",
+          "type": "string",
+          "format": "decimal",
+          "x-nullable": true
+        },
+        "height": {
+          "title": "Height",
+          "type": "string",
+          "format": "decimal",
+          "x-nullable": true
+        },
+        "allergies": {
+          "title": "Allergies",
+          "type": "boolean"
+        },
+        "disability": {
+          "title": "Disability",
+          "type": "boolean"
+        }
+      }
+    },
+    "PatientMedClerk": {
+      "required": [
+        "first_name",
+        "last_name",
+        "matric_No",
+        "healthcentre_No",
+        "Age",
+        "mobileNo",
+        "birthDate",
+        "tribe",
+        "stateOfOrigin",
+        "nationality",
+        "religion",
+        "faculty",
+        "department",
+        "kinName",
+        "kinAddress",
+        "kinMobile",
+        "health_profile"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "first_name": {
+          "title": "First name",
+          "type": "string",
+          "maxLength": 150,
+          "minLength": 1
+        },
+        "last_name": {
+          "title": "Last name",
+          "type": "string",
+          "maxLength": 150,
+          "minLength": 1
+        },
+        "matric_No": {
+          "title": "Matric No",
+          "type": "string",
+          "maxLength": 25,
+          "minLength": 1
+        },
+        "healthcentre_No": {
+          "title": "Healthcentre No",
+          "type": "string",
+          "maxLength": 25,
+          "minLength": 1
+        },
+        "sex": {
+          "title": "Sex",
+          "type": "string",
+          "enum": [
+            "M",
+            "F",
+            "Others"
+          ]
+        },
+        "profile_picture": {
+          "title": "Profile picture",
+          "type": "string",
+          "readOnly": true,
+          "x-nullable": true,
+          "format": "uri"
+        },
+        "Age": {
+          "title": "Age",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        },
+        "mobileNo": {
+          "title": "MobileNo",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "birthDate": {
+          "title": "BirthDate",
+          "type": "string",
+          "format": "date-time"
+        },
+        "maritalStatus": {
+          "title": "MaritalStatus",
+          "type": "string",
+          "enum": [
+            "S",
+            "M"
+          ]
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string",
+          "enum": [
+            "UG",
+            "GR",
+            "AC",
+            "NA",
+            "VR",
+            "Unknown"
+          ]
+        },
+        "tribe": {
+          "title": "Tribe",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "stateOfOrigin": {
+          "title": "StateOfOrigin",
+          "type": "string",
+          "maxLength": 29,
+          "minLength": 1
+        },
+        "nationality": {
+          "title": "Nationality",
+          "type": "string",
+          "maxLength": 150,
+          "minLength": 1
+        },
+        "religion": {
+          "title": "Religion",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "faculty": {
+          "title": "Faculty",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "department": {
+          "title": "Department",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "kinName": {
+          "title": "KinName",
+          "type": "string",
+          "maxLength": 150,
+          "minLength": 1
+        },
+        "kinAddress": {
+          "title": "KinAddress",
+          "type": "string",
+          "maxLength": 500,
+          "minLength": 1
+        },
+        "kin_relationship": {
+          "title": "Kin relationship",
+          "type": "string",
+          "enum": [
+            "cousin",
+            "spouse",
+            "parent",
+            "sister",
+            "brother",
+            "guardian"
+          ]
+        },
+        "kinMobile": {
+          "title": "KinMobile",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "regStatus": {
+          "title": "RegStatus",
+          "type": "boolean"
+        },
+        "health_profile": {
+          "$ref": "#/definitions/HealthProfile"
+        }
+      }
+    },
+    "PatientRecordClerk": {
+      "required": [
+        "first_name",
+        "last_name",
+        "matric_No",
+        "healthcentre_No",
+        "Age",
+        "kinName",
+        "kinAddress",
+        "kinMobile"
+      ],
+      "type": "object",
+      "properties": {
+        "profile_picture": {
+          "title": "Profile picture",
+          "type": "string",
+          "readOnly": true,
+          "x-nullable": true,
+          "format": "uri"
+        },
+        "first_name": {
+          "title": "First name",
+          "type": "string",
+          "maxLength": 150,
+          "minLength": 1
+        },
+        "last_name": {
+          "title": "Last name",
+          "type": "string",
+          "maxLength": 150,
+          "minLength": 1
+        },
+        "matric_No": {
+          "title": "Matric No",
+          "type": "string",
+          "maxLength": 25,
+          "minLength": 1
+        },
+        "healthcentre_No": {
+          "title": "Healthcentre No",
+          "type": "string",
+          "maxLength": 25,
+          "minLength": 1
+        },
+        "sex": {
+          "title": "Sex",
+          "type": "string",
+          "enum": [
+            "M",
+            "F",
+            "Others"
+          ]
+        },
+        "Age": {
+          "title": "Age",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string",
+          "enum": [
+            "UG",
+            "GR",
+            "AC",
+            "NA",
+            "VR",
+            "Unknown"
+          ]
+        },
+        "kinName": {
+          "title": "KinName",
+          "type": "string",
+          "maxLength": 150,
+          "minLength": 1
+        },
+        "kinAddress": {
+          "title": "KinAddress",
+          "type": "string",
+          "maxLength": 500,
+          "minLength": 1
+        },
+        "kin_relationship": {
+          "title": "Kin relationship",
+          "type": "string",
+          "enum": [
+            "cousin",
+            "spouse",
+            "parent",
+            "sister",
+            "brother",
+            "guardian"
+          ]
+        },
+        "kinMobile": {
+          "title": "KinMobile",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        },
+        "regStatus": {
+          "title": "RegStatus",
+          "type": "boolean"
+        }
+      }
+    },
+    "TokenObtainPair": {
+      "required": [
+        "username",
+        "password"
+      ],
+      "type": "object",
+      "properties": {
+        "username": {
+          "title": "Username",
+          "type": "string",
+          "minLength": 1
+        },
+        "password": {
+          "title": "Password",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "TokenRefresh": {
+      "required": [
+        "refresh"
+      ],
+      "type": "object",
+      "properties": {
+        "refresh": {
+          "title": "Refresh",
+          "type": "string",
+          "minLength": 1
+        },
+        "access": {
+          "title": "Access",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        }
+      }
+    }
+  }
+}
