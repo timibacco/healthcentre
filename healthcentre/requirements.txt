@@ -344,6 +344,7 @@ geoip2==2.9.0
 gevent==20.9.0
 gpg===1.14.0-unknown
 greenlet==0.4.17
+gunicorn==21.2.0
 gvm-tools==22.6.1
 h11==0.12.0
 h2==4.0.0
