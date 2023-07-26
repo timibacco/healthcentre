@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from HMS.models import Patient, HealthProfile
-
+from django.contrib.auth.models import User
 
 class HealthProfileSerializer(serializers.ModelSerializer):
     
@@ -49,3 +49,7 @@ class UpdateHealthProfileSerializer(serializers.ModelSerializer):
         
 
 
+class Userserializer(serializers.ModelSerializer):
+    class Meta(object):
+        model = User
+        fields = ['id','username', 'password', 'email']

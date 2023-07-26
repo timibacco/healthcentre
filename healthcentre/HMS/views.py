@@ -11,6 +11,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from .permissions import IsMedClerk, IsRecordClerk, IsLabAttendant
 from django.shortcuts import get_object_or_404
+
+
 ########################################################################################################
 class PatientRecordClerkView(generics.ListAPIView):
 
@@ -80,8 +82,33 @@ class PatientLaboratoristView(generics.RetrieveUpdateDestroyAPIView):
    # permission_classes = [IsLabAttendant, permissions.IsAdminUser]
 
 
-class LoginAPIView(GenericAPIView):
-    def post(self, request):
-        username = request.POST('username')
-        password = request.POST('password')
-        user = authenticate(username=username, password=password)
+###############################################################################################################
+##############################################################################################################
+##############################################################################################################
+from rest_framework.decorators import api_view
+from .serializers import Userserializer
+from rest_framework.authtoken.models import Token 
+from django.contrib.auth.models import User
+from rest_framework import status
+from django.shortcuts import get_object_or_404
+
+@api_view(['POST'])
+def login(request):
+    user  = get_object_or_404(User, username = request.data['username'])
+    if not user.check_password(request.data['password']):
+        return Response({'detail': 'Details Not Found'}, status =status.HTTP_404_NOT_FOUND)
+    token, created = Token.objects.get_or_create(user=user)
+    serializer= Userserializer(instance=user)
+    return Response({"token": token.key, "user": serializer.data})
+
+@api_view(['POST'])
+def signup(request):
+    serializer = Userserializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        user = User.objects.get(username= request.data['username'])
+        user.set_password(request.data['password'])
+        user.save()
+        token = Token.objects.create(user=user)
+        return Response({"token":token.key, "user": serializer.data})
+    return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
