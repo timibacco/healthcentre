@@ -78,3 +78,10 @@ class PatientLaboratoristView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Patient.objects.all()
     serializer_class = PatientLaboratoristSerializer
    # permission_classes = [IsLabAttendant, permissions.IsAdminUser]
+
+
+class LoginAPIView(GenericAPIView):
+    def post(self, request):
+        username = request.POST('username')
+        password = request.POST('password')
+        user = authenticate(username=username, password=password)
