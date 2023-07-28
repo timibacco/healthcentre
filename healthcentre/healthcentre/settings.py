@@ -24,21 +24,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 #######################################################################
-SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
+#SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 ######################################################################
 
-#SECRET_KEY='#g+y=i0mb-hq7)iz&7qg3ftdgq%p2g%wa$-^0$6=^17^v5(#6u'
+SECRET_KEY='#g+y=i0mb-hq7)iz&7qg3ftdgq%p2g%wa$-^0$6=^17^v5(#6u'
 
 
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
+DEBUG = False
 ################################################
-DEBUG = 'RENDER' not in os.environ
+#DEBUG = 'RENDER' not in os.environ
 ################################################
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 ######################################################################
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
@@ -160,7 +160,7 @@ WSGI_APPLICATION = 'healthcentre.wsgi.application'
 
 
 #############################################################
-import dj_database_url
+""" import dj_database_url
 #############################################################
 
 DATABASES = {
@@ -170,9 +170,10 @@ DATABASES = {
         conn_max_age=600
     )
 }
+"""
 ###################################################################
 ###################################################################
-""" DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'healthcentre',
@@ -183,7 +184,7 @@ DATABASES = {
     }
 }
 
-"""
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -205,8 +206,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 #SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -232,15 +231,15 @@ STATIC_URL = '/static/'
 
 ############################################################################
 #############################################################################
-if not Debug:
-    
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 #######################################################################################
 ######################################################################################
 

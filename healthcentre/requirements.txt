@@ -6,7 +6,7 @@ antlr4-python3-runtime==4.9.1
 apparmor==2.13.6
 applicationinsights==0.11.9
 argcomplete==1.8.1
-asgiref==3.7.2
+asgiref==3.3.0
 asn1crypto==1.4.0
 async-timeout==3.0.1
 attrs==20.3.0
@@ -364,7 +364,7 @@ invoke==1.4.1
 ipdb==0.13.3
 ipwhois==0.15.1
 ipython==7.20.0
-ipython-genutils==0.2.0
+ipython_genutils==0.2.0
 isodate==0.6.0
 itsdangerous==2.1.2
 javaproperties==0.7.0
@@ -419,7 +419,7 @@ olefile==0.46
 onboard==1.4.1
 onionshare==2.2
 ospd-openvas==21.4.4
-packaging==23.1
+packaging==20.9
 paramiko==2.7.2
 parsero==0.82
 parso==0.8.1
@@ -545,7 +545,7 @@ tornado==6.1
 torrequest==0.1.0
 tqdm==4.57.0
 traitlets==5.0.5
-typing-extensions==4.4.0
+typing_extensions==4.4.0
 uamqp==1.2.13
 ufw==0.36
 unattended-upgrades==0.1
