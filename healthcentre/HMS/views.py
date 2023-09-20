@@ -42,16 +42,15 @@ class PatientRecordClerkView(generics.ListAPIView):
         self.check_object_permissions(self.request, obj)
         return obj     """
 
-#class RetrieveRecordClerkView(MultipleFieldLookupMixin, generics.RetrieveAPIView):
+class RetrievePatientView(generics.RetrieveAPIView):
     """ Retrieving patients using other fields other than {{id}}. More Like a Search endpoint is what it is.
-     
+     """
     queryset = Patient.objects.all()
-    serializer_class = PatientRecordClerkView
-    lookup_fields = ['matric_No','healthcentre_No']
+    serializer_class = PatientRecordClerkSerializer
+    lookup_fields = ('matric_No','healthcentre_No')
     def get_queryset(self):
-        if getattr(self, 'swagger_fake_view', False):
-            return Patient.objects.none()  # return empty queryset
-        return Patient.get_object()"""
+       
+        return super().get_queryset()
 
 #################################################################################################################
 #################################################################################################################
